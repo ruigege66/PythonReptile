@@ -1,8 +1,8 @@
 from urllib import request,parse
 from http import cookiejar
 #创建cookiejar实例
-# filename = "cookie.txt"
-cookie = cookiejar.CookieJar()
+filename = "cookie.txt"
+cookie = cookiejar.MozillaCookieJar(filename)
 #生成cookie的管理器
 cookie_handler = request.HTTPCookieProcessor(cookie)
 #创建http请求管理器
@@ -33,6 +33,8 @@ def login():
     #ignore_discard表示及时cookie将要被丢弃也要保存下来
     #ignore_expire表示如果该文件中cookie即使已经过期，保存
     cookie.save(ignore_discard=True,ignore_expires=True)
+
+
 
 def getHomePage():
     url = "http://www.renren.com/965187997/profile"
